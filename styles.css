@@ -476,7 +476,14 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; }
 .visit__title {
   font-size: clamp(2.6rem, 7vw, 5rem);
   color: var(--gold-bright);
-  margin-bottom: clamp(2.5rem, 7vh, 4rem);
+  margin-bottom: 0.6rem;
+}
+.visit__welcome {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  color: var(--muted);
+  margin: 0 0 clamp(2.5rem, 7vh, 4rem);
 }
 .visit__grid {
   display: grid;
@@ -530,6 +537,28 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; }
 }
 .visit__call:hover .visit__call-label { color: var(--ink); }
 .visit__call-num { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: 0.04em; }
+
+/* email booking alternative */
+.visit__email {
+  margin: 1.6rem auto 0;
+  max-width: 40ch;
+  font-size: 0.98rem;
+  color: var(--muted);
+}
+.visit__email a {
+  color: var(--gold-bright);
+  border-bottom: 1px solid var(--hairline);
+  transition: border-color 0.3s var(--ease);
+  word-break: break-word;
+}
+.visit__email a:hover { border-bottom-color: var(--gold); }
+.visit__email-note {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--faint);
+  letter-spacing: 0.02em;
+}
 
 /* closing full-bleed */
 .visit__finale {
