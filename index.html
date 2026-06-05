@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Old Siam · Hertford's Authentic Thai Kitchen</title>
+  <meta name="description" content="Old Siam — Hertford's authentic Thai food restaurant. Intimate teak-and-candlelight dining at 6 Parliament Square. Masaman curry, sizzling beef, Tom Yum and more. Book on 01992 559 999." />
+
+  <!-- Open Graph (nice link previews when shared) -->
+  <meta property="og:title" content="Old Siam · Authentic Thai, Hertford" />
+  <meta property="og:description" content="Carved teak, candlelight and slow-cooked Thai cooking in the heart of Hertford." />
+  <meta property="og:type" content="restaurant" />
+  <meta property="og:image" content="images/hero-relief.jpg" />
+
+  <!-- Fonts: Cormorant Garamond (display serif) + Inter (body). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== Gold scroll-progress bar (top hairline) ===== -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ===== Fixed minimal nav (transparent over hero, darkens on scroll) ===== -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand">Old&nbsp;Siam</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#dishes">Menu</a>
+      <a href="#room">The Room</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a href="tel:+441992559999" class="nav__cta">Book · 01992&nbsp;559&nbsp;999</a>
+  </header>
+
+  <!-- ===== 1. HERO ===== -->
+  <section class="hero" id="top">
+    <!-- The hero image lives in its own layer so JS can scale + fade it on scroll.
+         IMAGE: carved temple relief + teak interior. Eager-loaded (above the fold). -->
+    <div class="hero__media" id="heroMedia">
+      <img src="images/hero-relief.jpg" alt="Hand-carved temple relief and teak interior at Old Siam" width="1060" height="1195" fetchpriority="high" />
+      <div class="hero__veil"></div>
+    </div>
+
+    <div class="hero__inner">
+      <p class="hero__eyebrow" data-reveal>Hertford · est. an age ago</p>
+      <h1 class="hero__title" data-reveal data-delay="1">Old Siam</h1>
+      <p class="hero__sub" data-reveal data-delay="2">Hertford's authentic Thai kitchen</p>
+    </div>
+
+    <!-- Animated scroll cue -->
+    <a href="#dishes" class="scroll-cue" aria-label="Scroll to explore">
+      <span class="scroll-cue__line"></span>
+      <span class="scroll-cue__word">Scroll</span>
+    </a>
+  </section>
+
+  <!-- ===== 2. DISH SECTIONS (the core scroll experience) =====
+       Each .dish alternates image side via :nth-child / .dish--right.
+       - .dish__media img  : fades + scales in on enter (IntersectionObserver -> .is-visible)
+       - data-parallax + data-speed : independent vertical drift handled in script.js
+       - data-reveal + data-delay   : staggered text reveal
+  -->
+  <main id="dishes" class="dishes">
+
+    <!-- intro flourish -->
+    <div class="section-flourish" aria-hidden="true">
+      <span class="hairline"></span>
+      <svg viewBox="0 0 24 24" class="flourish-mark" aria-hidden="true"><path d="M12 2c1.5 3 4 4.5 7 5-3 .5-5.5 2-7 5-1.5-3-4-4.5-7-5 3-.5 5.5-2 7-5z"/></svg>
+      <span class="hairline"></span>
+    </div>
+    <p class="dishes__lead" data-reveal>Seven recipes, carried from Thailand and cooked the slow way. A few we are known for.</p>
+
+    <!-- 1 · Masaman -->
+    <article class="dish">
+      <div class="dish__media" data-parallax data-speed="0.12">
+        <img src="images/masaman.jpg" alt="Masaman chicken curry with potato and peanuts on a teak table" width="1540" height="1100" loading="lazy" />
+      </div>
+      <div class="dish__text">
+        <span class="dish__tag" data-reveal>★ Most-loved</span>
+        <h2 class="dish__name" data-reveal data-delay="1">Masaman<br />Chicken Curry</h2>
+        <p class="dish__copy" data-reveal data-delay="2">A curry that travelled the spice roads. Masaman is gentle and deep — cardamom, cinnamon and clove folded through coconut, chicken slow-cooked until it falls apart, soft potato and a scatter of roasted peanuts. Sweet, savoury, barely warm. The dish our guests drive back for.</p>
+        <span class="dish__index" data-reveal data-delay="2" aria-hidden="true">01</span>
+      </div>
+    </article>
+
+    <!-- 2 · Mixed Starter Platter (image right) -->
+    <article class="dish dish--right">
+      <div class="dish__media" data-parallax data-speed="0.16">
+        <img src="images/starter-platter.jpg" alt="Mixed Thai starter platter — spring rolls, satay and carved garnishes" width="1470" height="860" loading="lazy" />
+      </div>
+      <div class="dish__text">
+        <span class="dish__tag" data-reveal>To begin</span>
+        <h2 class="dish__name" data-reveal data-delay="1">Mixed<br />Starter Platter</h2>
+        <p class="dish__copy" data-reveal data-delay="2">The opening act. Golden spring rolls, chicken satay smoke-kissed over the grill, prawn toast and delicate parcels — arranged around hand-carved garnishes with three dipping sauces. Built to be shared, slowly, over the first pour.</p>
+        <span class="dish__index" data-reveal data-delay="2" aria-hidden="true">02</span>
+      </div>
+    </article>
+
+    <!-- 3 · Sizzling Beef -->
+    <article class="dish">
+      <div class="dish__media" data-parallax data-speed="0.12">
+        <!-- VIDEO of the real sizzling beef. Autoplays muted + loops (required for
+             autoplay on mobile). The poster image shows instantly while it loads,
+             so there's no blank frame. Swap the clip by replacing images/sizzling-beef.mp4. -->
+        <video class="dish__video" src="images/sizzling-beef.mp4"
+               poster="images/beef-poster.jpg"
+               autoplay muted loop playsinline preload="metadata"
+               aria-label="Slow-cooked sizzling beef arriving at the table"></video>
+      </div>
+      <div class="dish__text">
+        <span class="dish__tag" data-reveal>From the iron</span>
+        <h2 class="dish__name" data-reveal data-delay="1">Slow-cooked<br />Sizzling Beef</h2>
+        <p class="dish__copy" data-reveal data-delay="2">Beef braised long and low until it gives way, then brought to the table still singing on the iron. Garlic, black pepper and dark caramelised soy, the edges crisp, the centre tender. You hear it before you taste it.</p>
+        <span class="dish__index" data-reveal data-delay="2" aria-hidden="true">03</span>
+      </div>
+    </article>
+
+    <!-- 4 · Thai Green Curry (image right) -->
+    <article class="dish dish--right">
+      <div class="dish__media" data-parallax data-speed="0.16">
+        <img src="images/greencurry.jpg" alt="Thai green curry with basil and coconut, served with rice and noodles" width="1470" height="1125" loading="lazy" />
+      </div>
+      <div class="dish__text">
+        <span class="dish__tag" data-reveal>The bright one</span>
+        <h2 class="dish__name" data-reveal data-delay="1">Thai<br />Green Curry</h2>
+        <p class="dish__copy" data-reveal data-delay="2">Brighter, bolder, hotter. Fresh green chillies pounded with lemongrass and galangal, loosened with coconut cream and lifted by Thai basil and the citrus snap of kaffir lime. Fragrant heat that builds and lingers.</p>
+        <span class="dish__index" data-reveal data-delay="2" aria-hidden="true">04</span>
+      </div>
+    </article>
+
+    <!-- 5 · Tom Yum -->
+    <article class="dish">
+      <div class="dish__media" data-parallax data-speed="0.12">
+        <img src="images/tomyum.jpg" alt="Tom Yum soup with prawns, mushrooms and chilli" width="1500" height="1075" loading="lazy" />
+      </div>
+      <div class="dish__text">
+        <span class="dish__tag" data-reveal>Hot &amp; sour</span>
+        <h2 class="dish__name" data-reveal data-delay="1">Tom Yum<br />Soup</h2>
+        <p class="dish__copy" data-reveal data-delay="2">Thailand in a bowl. A clear, fiery broth sharpened with lemongrass, lime leaf and galangal, plump mushrooms and prawns, a slick of chilli oil drawn across the top. Hot, sour and aromatic — the soup that wakes the whole table.</p>
+        <span class="dish__index" data-reveal data-delay="2" aria-hidden="true">05</span>
+      </div>
+    </article>
+
+    <!-- 6 · Stir-fried Noodles (image right) -->
+    <article class="dish dish--right">
+      <div class="dish__media" data-parallax data-speed="0.16">
+        <img src="images/noodles.jpg" alt="Wok-fried rice noodles with greens and chilli" width="1500" height="1060" loading="lazy" />
+      </div>
+      <div class="dish__text">
+        <span class="dish__tag" data-reveal>Wok-charred</span>
+        <h2 class="dish__name" data-reveal data-delay="1">Pad Kee Mao<br />Drunken Noodles</h2>
+        <p class="dish__copy" data-reveal data-delay="2">Wide rice noodles seared hard in the wok and tumbled with chilli, garlic, holy basil and crisp greens. Smoky from the flame — the cook's <em>wok hei</em> — with a slow chilli heat that arrives just behind the sweetness.</p>
+        <span class="dish__index" data-reveal data-delay="2" aria-hidden="true">06</span>
+      </div>
+    </article>
+
+    <!-- ▸ TO ADD A 7TH DISH (e.g. real Pad Thai photo):
+         1. Drop images/padthai.jpg into /images (see images/README.md for the slot).
+         2. Copy one <article class="dish"> block above, swap the <img>, name & copy,
+            bump the data-index to 07, and alternate the side with class="dish--right".
+    -->
+  </main>
+
+  <!-- ===== 3. THE ROOM (gallery break) ===== -->
+  <section class="room" id="room">
+    <div class="section-flourish section-flourish--light" aria-hidden="true">
+      <span class="hairline"></span>
+      <svg viewBox="0 0 24 24" class="flourish-mark" aria-hidden="true"><path d="M12 2c1.5 3 4 4.5 7 5-3 .5-5.5 2-7 5-1.5-3-4-4.5-7-5 3-.5 5.5-2 7-5z"/></svg>
+      <span class="hairline"></span>
+    </div>
+
+    <div class="room__intro">
+      <h2 class="room__title" data-reveal>The Room</h2>
+      <p class="room__copy" data-reveal data-delay="1">Step inside and Hertford slips away. Teak tables and antique timber, carried piece by piece from Thailand, sit beneath hand-carved temple reliefs and the soft glow of brass lanterns. Intimate, candlelit, unhurried — a room made for long evenings and good company.</p>
+    </div>
+
+    <!-- Two drifting rows: top row drifts one way, bottom row the other (parallaxX). -->
+    <div class="room__gallery" aria-label="Photographs of the restaurant interior">
+      <div class="room__row" data-parallax-x data-speed="0.06">
+        <figure class="room__shot"><img src="images/hero-relief.jpg" alt="Carved temple relief in the dining room" width="1060" height="1195" loading="lazy" /></figure>
+        <figure class="room__shot room__shot--wide"><img src="images/table-spread.jpg" alt="A spread of Thai dishes on a teak table" width="1550" height="1210" loading="lazy" /></figure>
+        <figure class="room__shot room__shot--wide"><img src="images/interior-sunken.jpg" alt="The sunken-table dining room with teak panelling, Thai cushions and a gold statue" width="1240" height="600" loading="lazy" /></figure>
+        <figure class="room__shot"><img src="images/shopfront-day.jpg" alt="The Old Siam shopfront on Parliament Square" width="960" height="980" loading="lazy" /></figure>
+      </div>
+      <div class="room__row" data-parallax-x data-speed="-0.06">
+        <figure class="room__shot room__shot--wide"><img src="images/shopfront-night.jpg" alt="The Old Siam shopfront glowing at night" width="1600" height="1148" loading="lazy" /></figure>
+        <figure class="room__shot"><img src="images/dessert.jpg" alt="Deep-fried ice cream with strawberries and berry coulis" width="950" height="1050" loading="lazy" /></figure>
+        <figure class="room__shot"><img src="images/masaman.jpg" alt="Curry and dishes laid out for dinner" width="1540" height="1100" loading="lazy" /></figure>
+        <figure class="room__shot room__shot--wide"><img src="images/greencurry.jpg" alt="Thai green curry and accompaniments" width="1470" height="1125" loading="lazy" /></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. REVIEWS ===== -->
+  <section class="reviews" id="reviews">
+    <div class="reviews__score" data-reveal>
+      <span class="reviews__stars" aria-hidden="true">★★★★★</span>
+      <span class="reviews__num"><span class="count" data-count-to="4.6" data-decimals="1">0.0</span><span class="reviews__den"> / 5</span></span>
+      <span class="reviews__meta"><span class="count" data-count-to="636" data-decimals="0">0</span> Google reviews</span>
+    </div>
+
+    <ul class="reviews__quotes">
+      <li class="quote" data-reveal>
+        <p>“The Masaman chicken curry is the best I've had outside Bangkok — we drove forty minutes just to come back.”</p>
+        <cite>— Google review</cite>
+      </li>
+      <li class="quote" data-reveal data-delay="1">
+        <p>“Tucked away and intimate, all carved teak and candlelight. The service is warm and the food faultless.”</p>
+        <cite>— Google review</cite>
+      </li>
+      <li class="quote" data-reveal data-delay="2">
+        <p>“Everything arrives beautifully presented and tastes even better. A little gem in the heart of Hertford.”</p>
+        <cite>— Google review</cite>
+      </li>
+    </ul>
+    <p class="reviews__note">Pull-quotes above are illustrative — swap in your favourite real Google reviews.</p>
+  </section>
+
+  <!-- ===== 5. VISIT / CONTACT + closing full-bleed ===== -->
+  <section class="visit" id="visit">
+    <div class="visit__inner">
+      <h2 class="visit__title" data-reveal>Come and find us</h2>
+
+      <div class="visit__grid">
+        <div class="visit__block" data-reveal data-delay="1">
+          <h3>Where</h3>
+          <p>6 Parliament Square<br />Hertford, SG14&nbsp;1EY</p>
+          <a class="visit__maplink" href="https://maps.google.com/?q=Old+Siam,+6+Parliament+Square,+Hertford+SG14+1EY" target="_blank" rel="noopener">Open in Maps →</a>
+        </div>
+
+        <div class="visit__block" data-reveal data-delay="2">
+          <h3>Hours</h3>
+          <p><span class="visit__label">Lunch</span> 12:00 – 14:30</p>
+          <p><span class="visit__label">Dinner</span> 18:00 – 23:00</p>
+        </div>
+
+        <div class="visit__block" data-reveal data-delay="3">
+          <h3>Good to know</h3>
+          <p>Bookings recommended, not essential.<br />Reservations available · Vegan options.</p>
+          <p class="visit__offer">Sun–Thurs · 10% off takeaways <span>(collection only)</span></p>
+        </div>
+      </div>
+
+      <a href="tel:+441992559999" class="visit__call" data-reveal data-delay="3">
+        <span class="visit__call-label">Book a table</span>
+        <span class="visit__call-num">01992 559 999</span>
+      </a>
+    </div>
+
+    <!-- Final full-bleed atmospheric image with the name once more. -->
+    <div class="visit__finale" data-parallax data-speed="0.08">
+      <img src="images/shopfront-night.jpg" alt="Old Siam shopfront glowing at night" width="1600" height="1148" loading="lazy" />
+      <div class="visit__finale-veil"></div>
+      <p class="visit__finale-name">Old&nbsp;Siam</p>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="foot">
+    <p>Old Siam · 6 Parliament Square, Hertford SG14 1EY · <a href="tel:+441992559999">01992 559 999</a></p>
+    <p class="foot__fine">Authentic Thai cuisine · 4.6★ from 636 Google reviews</p>
+
+    <!-- Designer credit / soft call-to-action -->
+    <p class="foot__credit">
+      Need a website just like this one?
+      <a href="mailto:a_corduneanu@icloud.com">a_corduneanu@icloud.com</a>
+    </p>
+  </footer>
+
+  <!-- ===== Sticky mobile call button ===== -->
+  <a href="tel:+441992559999" class="sticky-call" aria-label="Call Old Siam to book a table">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.2 2.2z"/></svg>
+    <span>Book · 01992 559 999</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>

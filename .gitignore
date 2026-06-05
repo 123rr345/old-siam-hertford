@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Local preview tooling (harness-specific)
+.claude/
+
+# Source screenshots — raw material the site was cropped from.
+# Not needed to run or deploy the site; excluded to keep the repo lean.
+# (Delete these lines if you'd rather keep them under version control.)
+Screenshot*.png
+
+# Old unused beef still (replaced by the video). Harmless if kept.
+images/beef.jpg
